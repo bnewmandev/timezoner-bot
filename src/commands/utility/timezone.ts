@@ -43,6 +43,8 @@ const timezone: Command = {
 		const member = interaction.member;
 		const guild = interaction.guild;
 
+		let response = "An unknown error occurred. Please try again later.";
+
 		if (offset) {
 			let role = guild.roles.cache.find((r) => r.name === offset);
 			if (!role) {
@@ -58,35 +60,15 @@ const timezone: Command = {
 				const oldRole = member.roles.cache.find((r) => choices.includes(r.name));
 				await member.roles.remove(oldRole);
 				await member.roles.add(role);
-				await interaction.reply(`You have been given the ${offset} role.`);
+				response = `You have been given the ${offset} role.`;
 			} catch (error) {
 				console.error(error);
-				await interaction.reply("An error occurred while assigning the role.");
+				response = `An error occurred while assigning the role ${offset}.`;
 			}
 		} else {
-			await interaction.reply("Please provide a timezone offset.");
+			response = `No timezone offset was provided.`;
 		}
-
-		if (offset) {
-			let role = guild.roles.cache.find((r) => r.name === offset);
-			if (!role) {
-				role = await guild.roles.create({
-					name: offset,
-					position: -1,
-					mentionable: false,
-					reason: `Role for timezone ${offset}`,
-				});
-			}
-			try {
-				await member.roles.add(role);
-				await interaction.reply(`You have been given the ${offset} role.`);
-			} catch (error) {
-				console.error(error);
-				await interaction.reply("An error occurred while assigning the role.");
-			}
-		} else {
-			await interaction.reply("Please provide a timezone offset.");
-		}
+		await interaction.reply(response);
 	},
 };
 

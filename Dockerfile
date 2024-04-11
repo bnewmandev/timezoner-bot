@@ -7,4 +7,4 @@ COPY src ./src
 RUN yarn install
 RUN yarn build
 
-CMD [ "dist/index.js" ]
+CMD [ "./dist/index.js" ]

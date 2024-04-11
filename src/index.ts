@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { Client, Events, GatewayIntentBits, Options } from "discord.js";
+import { Client, Events, GatewayIntentBits, ActivityType } from "discord.js";
 import interactionHandler from "./interactionHandler";
 
 const TOKEN = process.env.DISCORD_TOKEN;
@@ -20,6 +20,10 @@ const client = new Client({
 
 client.once(Events.ClientReady, (readyClient) => {
 	console.log(`Logged in as ${readyClient.user?.tag}`);
+	readyClient.user.setPresence({
+		activities: [{ name: "🌐 /timezone", type: ActivityType.Custom }],
+		status: "online",
+	});
 });
 
 client.on(Events.InteractionCreate, interactionHandler);

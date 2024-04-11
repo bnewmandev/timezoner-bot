@@ -1,8 +1,9 @@
-FROM node:20.11.1-alpine AS base
+FROM node:20.11.1-alpine
 
 COPY package.json ./
 COPY yarn.lock ./
-COPY ./src ./src
+COPY tsconfig.json ./
+COPY src ./src
 RUN yarn install
 RUN yarn build
 

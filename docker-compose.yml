@@ -5,6 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            target: prod
         image: bnewmandev/benbot-timezoner
         container_name: bot
         restart: unless-stopped

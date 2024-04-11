@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "ts-node src/index.ts",
         "register": "ts-node src/commands/register.ts",
-        "build": "tsc"
+        "build": "tsc",
+        "imgbuild": "docker compose build"
     },
     "dependencies": {
         "@types/node": "^20.12.7",

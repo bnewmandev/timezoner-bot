@@ -51,14 +51,16 @@ const timezone: Command = {
 				role = await guild.roles.create({
 					name: offset,
 					color: "#000000",
-					position: -1,
 					mentionable: false,
 					reason: `Role for timezone ${offset}`,
 				});
 			}
 			try {
 				const oldRole = member.roles.cache.find((r) => choices.includes(r.name));
-				await member.roles.remove(oldRole);
+				if (oldRole) {
+					await member.roles.remove(oldRole);
+				}
+
 				await member.roles.add(role);
 				response = `You have been given the ${offset} role.`;
 			} catch (error) {

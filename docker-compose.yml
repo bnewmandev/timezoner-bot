@@ -6,7 +6,7 @@ services:
             context: .
             dockerfile: Dockerfile
             target: prod
-        image: bnewmandev/benbot-timezoner
+        image: bnewmandev/benbot-timezoner:latest
         container_name: bot
         restart: unless-stopped
         environment:

@@ -5,6 +5,6 @@ COPY yarn.lock ./
 COPY tsconfig.json ./
 COPY src ./src
 RUN yarn install
-RUN yarn build
+# RUN yarn build
 
-CMD [ "./dist/index.js" ]
+CMD [ "yarn", "dev" ]
